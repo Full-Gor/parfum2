@@ -1024,54 +1024,50 @@
             const stripe = Stripe('pk_test_51RGy61PQqougnU1C7Oa4hV8I7sI2g0iUsynJuh6R0EtkV7tT9tR1S4WPoa2UJo3y3w1HNWnO2v2pRNwJTxLcvI5f00q3D5uWn6');
 
             checkoutBtn.addEventListener('click', async () => {
-                if (cart.length === 0) {
-                    alert('Veuillez ajouter des produits au panier.');
-                    return;
-                }
+    if (cart.length === 0) {
+        alert('Veuillez ajouter des produits au panier.');
+        return;
+    }
 
-                try {
-                    const lineItems = cart.map(item => ({
-                        price_data: {
-                            currency: 'eur',
-                            product_data: {
-                                name: item.name,
-                            },
-                            unit_amount: Math.round(item.price * 100),
-                        },
-                        quantity: item.quantity,
-                    }));
+    try {
+        const lineItems = cart.map(item => ({
+            price_data: {
+                currency: 'eur',
+                product_data: {
+                    name: item.name,
+                },
+                unit_amount: Math.round(item.price * 100),
+            },
+            quantity: item.quantity,
+        }));
 
-                    const response = await fetch('/api/create-checkout', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            line_items: lineItems,
-                            success_url: window.location.origin + '/success.html',
-                            cancel_url: window.location.origin + '/',
-                        }),
-                    });
+        const response = await fetch('/api/create-checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ line_items: lineItems }),
+        });
 
-                    const session = await response.json();
+        const session = await response.json();
 
-                    if (session.error) {
-                        throw new Error(session.error);
-                    }
+        if (session.error) {
+            throw new Error(session.error);
+        }
 
-                    const { error } = await stripe.redirectToCheckout({
-                        sessionId: session.id,
-                    });
+        const { error } = await stripe.redirectToCheckout({
+            sessionId: session.id,
+        });
 
-                    if (error) {
-                        console.error('Stripe Checkout error:', error);
-                        alert('Une erreur s\'est produite lors du paiement.');
-                    }
-                } catch (error) {
-                    console.error('Checkout error:', error);
-                    alert('Une erreur s\'est produite lors du paiement: ' + error.message);
-                }
-            });
+        if (error) {
+            console.error('Stripe Checkout error:', error);
+            alert('Une erreur s\'est produite lors du paiement.');
+        }
+    } catch (error) {
+        console.error('Checkout error:', error);
+        alert('Une erreure s\'est produite lors du paiement: ' + error.message);
+    }
+});
         });
     </script>
 </body>
