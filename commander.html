@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Commandez des parfums de luxe en gros à prix avantageux. Livraison en France et en Europe, remise en main propre sur Paris.">
+    <meta name="keywords" content="parfums en gros, vente parfum, parfum de luxe, parfum pas cher, parfum bois, parfum bakara, sauvage parfum">
+    <meta name="author" content="Parfums Premium">
+    <title>Commander - Parfums Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #212121;
+            --secondary-color: #bf9b30;
+            --accent-color: #f8f3e3;
+            --text-color: #333333;
+            --light-color: #ffffff;
+            --gray-color: #f5f5f5;
+            --dark-gray: #777;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-color);
+            background: transparent;
+            border: none;
+        }
+        
+        /* Page Title */
+        .page-title {
+            padding: 150px 0 80px;
+            text-align: center;
+            background-color: var(--gray-color);
+        }
+        
+        .page-title h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .page-title p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .product-card {
+            background: var(--light-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-img img {
+            max-width: 60%;
+            max-height: 80%;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            text-align: center;
+            margin-top: 10px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-table {
+            background: var(--light-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        .pricing-header {
+            background: var(--primary-color);
+            color: var(--light-color);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .pricing-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0;
+        }
+        
+        .pricing-body {
+            padding: 30px;
+        }
+        
+        .price-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .price-tier {
+            background: var(--accent-color);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .price-tier:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tier-quantity {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .tier-price {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .order-selection {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 992px) {
+            .order-selection {
+                flex-direction: column;
+            }
+        }
+        
+        .bulk-selection, .order-summary {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            flex: 1;
+            box-shadow: var(--shadow);
+        }
+        
+        .bulk-selection h3, .order-summary h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .bulk-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .bulk-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .bulk-details {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .bulk-quantity {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .bulk-price {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .bulk-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .bulk-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .bulk-btn:hover {
+            background: var(--primary-color);
+        }
+        
+        .bulk-count {
+            font-size: 1.1rem;
+            font-weight: 700;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .summary-items {
+            margin-bottom: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-item-detail {
+            font-weight: 500;
+        }
+        
+        .summary-item-total {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .summary-totals {
+            margin: 20px 0;
+            padding-top: 10px;
+            border-top: 2px solid #eee;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .summary-row.total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-top: 15px;
+        }
+        
+        .order-form {
+            margin-top: 30px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .order-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .order-btn:hover {
+            background: var(--primary-color);
+        }
+        
+        .order-success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--light-color);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--light-color);
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .footer-text {
+            margin-bottom: 30px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 30px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .page-title h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .product-img {
+                height: 180px;
+            }
+            
+            .product-info h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Parfums <span>Premium</span></a>
+                <button class="menu-toggle">☰</button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#about">À propos</a></li>
+                    <li><a href="index.html#products">Parfums</a></li>
+                    <li><a href="commander.html" class="active">Commander</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Commander nos Parfums</h1>
+            <p>Découvrez nos tarifs préférentiels pour les achats en gros et composez votre commande</p>
+        </div>
+    </section>
+
+    <!-- Parfums Gallery -->
+    <section class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Parfums</h2>
+                <p>Tous nos parfums sont disponibles en lots avec des tarifs dégressifs</p>
+            </div>
+            <div class="products-grid">
+                <!-- Parfum 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/bois.png" alt="Parfum Bois">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bois</h3>
+                    </div>
+                </div>
+                
+                <!-- Parfum 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/bakara.png" alt="Parfum Bakara">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bakara</h3>
+                    </div>
+                </div>
+                
+                <!-- Parfum 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/aicha.png" alt="Parfum Aisha">
+                    </div>
+                    <div class="product-info">
+                        <h3>Aisha</h3>
+                    </div>
+                </div>
+                
+                <!-- Parfum 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/mula.png" alt="Parfum Mula">
+                    </div>
+                    <div class="product-info">
+                        <h3>Mula</h3>
+                    </div>
+                </div>
+                
+                <!-- Parfum 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/savage.png" alt="Parfum Sauvage">
+                    </div>
+                    <div class="product-info">
+                        <h3>Sauvage</h3>
+                    </div>
+                </div>
+                
+                <!-- Parfum 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/kirke.png" alt="Parfum Kirke">
+                    </div>
+                    <div class="product-info">
+                        <h3>Kirke</h3>
+                    </div>
+                </div>
+                
+                <!-- Parfum 7 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/rose.png" alt="Parfum Sucre Rose">
+                    </div>
+                    <div class="product-info">
+                        <h3>Sucre Rose</h3>
+                    </div>
+                </div>
+                
+                <!-- Parfum 8 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/noir.png" alt="Parfum Sucre Noir">
+                    </div>
+                    <div class="product-info">
+                        <h3>Sucre Noir</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Grille Tarifaire</h2>
+                <p>Sélectionnez vos lots de parfums et bénéficiez de nos tarifs dégressifs</p>
+            </div>
+            
+            <div class="pricing-table">
+                <div class="pricing-header">
+                    <h3>Tarifs par Quantité</h3>
+                </div>
+                <div class="pricing-body">
+                    <div class="price-tiers">
+                        <div class="price-tier">
+                            <div class="tier-quantity">20 pièces</div>
+                            <div class="tier-price">6.50€ / unité</div>
+                        </div>
+                        <div class="price-tier">
+                            <div class="tier-quantity">50 pièces</div>
+                            <div class="tier-price">6.00€ / unité</div>
+                        </div>
+                        <div class="price-tier">
+                            <div class="tier-quantity">100 pièces</div>
+                            <div class="tier-price">5.50€ / unité</div>
+                        </div>
+                        <div class="price-tier">
+                            <div class="tier-quantity">500 pièces</div>
+                            <div class="tier-price">4.80€ / unité</div>
+                        </div>
+                        <div class="price-tier">
+                            <div class="tier-quantity">1000 pièces</div>
+                            <div class="tier-price">4.50€ / unité</div>
+                        </div>
+                        <div class="price-tier">
+                            <div class="tier-quantity">2000 pièces</div>
+                            <div class="tier-price">4.30€ / unité</div>
+                        </div>
+                        <div class="price-tier">
+                            <div class="tier-quantity">3000 pièces</div>
+                            <div class="tier-price">4.20€ / unité</div>
+                        </div>
+                        <div class="price-tier">
+                            <div class="tier-quantity">5000+ pièces</div>
+                            <div class="tier-price">4.00€ / unité</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-selection">
+                <div class="bulk-selection">
+                    <h3>Commander par Lots</h3>
+                    <div class="bulk-options">
+                        <div class="bulk-option">
+                            <div class="bulk-details">
+                                <span class="bulk-quantity">Lot de 20 pièces</span>
+                                <span class="bulk-price">6.50€/unité</span>
+                            </div>
+                            <div class="bulk-controls">
+                                <button class="bulk-btn bulk-minus" data-qty="20" data-price="6.50">-</button>
+                                <span class="bulk-count" id="lot-20">0</span>
+                                <button class="bulk-btn bulk-plus" data-qty="20" data-price="6.50">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bulk-option">
+                            <div class="bulk-details">
+                                <span class="bulk-quantity">Lot de 50 pièces</span>
+                                <span class="bulk-price">6.00€/unité</span>
+                            </div>
+                            <div class="bulk-controls">
+                                <button class="bulk-btn bulk-minus" data-qty="50" data-price="6.00">-</button>
+                                <span class="bulk-count" id="lot-50">0</span>
+                                <button class="bulk-btn bulk-plus" data-qty="50" data-price="6.00">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bulk-option">
+                            <div class="bulk-details">
+                                <span class="bulk-quantity">Lot de 100 pièces</span>
+                                <span class="bulk-price">5.50€/unité</span>
+                            </div>
+                            <div class="bulk-controls">
+                                <button class="bulk-btn bulk-minus" data-qty="100" data-price="5.50">-</button>
+                                <span class="bulk-count" id="lot-100">0</span>
+                                <button class="bulk-btn bulk-plus" data-qty="100" data-price="5.50">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bulk-option">
+                            <div class="bulk-details">
+                                <span class="bulk-quantity">Lot de 500 pièces</span>
+                                <span class="bulk-price">4.80€/unité</span>
+                            </div>
+                            <div class="bulk-controls">
+                                <button class="bulk-btn bulk-minus" data-qty="500" data-price="4.80">-</button>
+                                <span class="bulk-count" id="lot-500">0</span>
+                                <button class="bulk-btn bulk-plus" data-qty="500" data-price="4.80">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bulk-option">
+                            <div class="bulk-details">
+                                <span class="bulk-quantity">Lot de 1000 pièces</span>
+                                <span class="bulk-price">4.50€/unité</span>
+                            </div>
+                            <div class="bulk-controls">
+                                <button class="bulk-btn bulk-minus" data-qty="1000" data-price="4.50">-</button>
+                                <span class="bulk-count" id="lot-1000">0</span>
+                                <button class="bulk-btn bulk-plus" data-qty="1000" data-price="4.50">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bulk-option">
+                            <div class="bulk-details">
+                                <span class="bulk-quantity">Lot de 2000 pièces</span>
+                                <span class="bulk-price">4.30€/unité</span>
+                            </div>
+                            <div class="bulk-controls">
+                                <button class="bulk-btn bulk-minus" data-qty="2000" data-price="4.30">-</button>
+                                <span class="bulk-count" id="lot-2000">0</span>
+                                <button class="bulk-btn bulk-plus" data-qty="2000" data-price="4.30">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bulk-option">
+                            <div class="bulk-details">
+                                <span class="bulk-quantity">Lot de 3000 pièces</span>
+                                <span class="bulk-price">4.20€/unité</span>
+                            </div>
+                            <div class="bulk-controls">
+                                <button class="bulk-btn bulk-minus" data-qty="3000" data-price="4.20">-</button>
+                                <span class="bulk-count" id="lot-3000">0</span>
+                                <button class="bulk-btn bulk-plus" data-qty="3000" data-price="4.20">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bulk-option">
+                            <div class="bulk-details">
+                                <span class="bulk-quantity">Lot de 5000 pièces</span>
+                                <span class="bulk-price">4.00€/unité</span>
+                            </div>
+                            <div class="bulk-controls">
+                                <button class="bulk-btn bulk-minus" data-qty="5000" data-price="4.00">-</button>
+                                <span class="bulk-count" id="lot-5000">0</span>
+                                <button class="bulk-btn bulk-plus" data-qty="5000" data-price="4.00">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-summary">
+                    <h3>Récapitulatif de votre commande</h3>
+                    <div class="summary-items">
+                        <!-- Les articles sélectionnés seront ajoutés ici dynamiquement -->
+                    </div>
+                    <div class="summary-totals">
+                        <div class="summary-row">
+                            <span>Quantité totale:</span>
+                            <span id="total-quantity">0</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Montant total:</span>
+                            <span id="total-amount">0.00€</span>
+                        </div>
+                    </div>
+                    <div class="order-form">
+                        <form id="order-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="parfum-type">Type de parfum</label>
+                                    <select id="parfum-type" required>
+                                        <option value="" disabled selected>Sélectionnez un parfum</option>
+                                        <option value="Bois">Bois</option>
+                                        <option value="Bakara">Bakara</option>
+                                        <option value="Aisha">Aisha</option>
+                                        <option value="Mula">Mula</option>
+                                        <option value="Sauvage">Sauvage</option>
+                                        <option value="Kirke">Kirke</option>
+                                        <option value="Sucre Rose">Sucre Rose</option>
+                                        <option value="Sucre Noir">Sucre Noir</option>
+                                        <option value="Yara">Yara</option>
+                                        <option value="Bleu">Bleu</option>
+                                        <option value="Coco">Coco</option>
+                                        <option value="Coco Vanille">Coco Vanille</option>
+                                        <option value="Attrape Rêve">Attrape Rêve</option>
+                                        <option value="Assortiment">Assortiment</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="client-name">Votre nom</label>
+                                    <input type="text" id="client-name" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="client-phone">Votre téléphone</label>
+                                    <input type="tel" id="client-phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="client-email">Votre email</label>
+                                    <input type="email" id="client-email" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="order-btn">Envoyer ma commande</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Parfums <span>Premium</span></div>
+                <p class="footer-text">Vente de parfums de luxe en gros à prix avantageux pour les professionnels et revendeurs.</p>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#about">À propos</a></li>
+                    <li><a href="index.html#products">Parfums</a></li>
+                    <li><a href="commander.html">Commander</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <p class="copyright">&copy; 2025 Parfums Premium. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Navigation mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Système de lots et commande
+        const minusButtons = document.querySelectorAll('.bulk-minus');
+        const plusButtons = document.querySelectorAll('.bulk-plus');
+        const summaryItems = document.querySelector('.summary-items');
+        const totalQuantityElement = document.getElementById('total-quantity');
+        const totalAmountElement = document.getElementById('total-amount');
+        const orderForm = document.getElementById('order-form');
+        
+        // Objet pour stocker les sélections de lots
+        let bulkSelections = {};
+        
+        // Fonction pour mettre à jour le récapitulatif
+        function updateSummary() {
+            let totalQuantity = 0;
+            let totalAmount = 0;
+            summaryItems.innerHTML = '';
+            
+            // Parcourir toutes les sélections de lots
+            for (const qty in bulkSelections) {
+                if (bulkSelections[qty] > 0) {
+                    const price = parseFloat(document.querySelector(`[data-qty="${qty}"]`).dataset.price);
+                    const count = bulkSelections[qty];
+                    const totalQty = parseInt(qty) * count;
+                    const subTotal = totalQty * price;
+                    
+                    totalQuantity += totalQty;
+                    totalAmount += subTotal;
+                    
+                    // Créer l'élément de récapitulatif
+                    const summaryItem = document.createElement('div');
+                    summaryItem.className = 'summary-item';
+                    summaryItem.innerHTML = `
+                        <span class="summary-item-detail">${count} × Lot(s) de ${qty} pièces à ${price.toFixed(2)}€/u</span>
+                        <span class="summary-item-total">${subTotal.toFixed(2)}€</span>
+                    `;
+                    summaryItems.appendChild(summaryItem);
+                }
+            }
+            
+            // Mettre à jour les totaux
+            totalQuantityElement.textContent = totalQuantity;
+            totalAmountElement.textContent = `${totalAmount.toFixed(2)}€`;
+        }
+        
+        // Événements pour les boutons moins
+        minusButtons.forEach(button => {
+            const qty = button.dataset.qty;
+            button.addEventListener('click', () => {
+                const countElement = document.getElementById(`lot-${qty}`);
+                let count = parseInt(countElement.textContent);
+                
+                if (count > 0) {
+                    count--;
+                    countElement.textContent = count;
+                    bulkSelections[qty] = count;
+                    updateSummary();
+                }
+            });
+            
+            // Initialiser la sélection dans l'objet
+            bulkSelections[button.dataset.qty] = 0;
+        });
+        
+        // Événements pour les boutons plus
+        plusButtons.forEach(button => {
+            const qty = button.dataset.qty;
+            button.addEventListener('click', () => {
+                const countElement = document.getElementById(`lot-${qty}`);
+                let count = parseInt(countElement.textContent);
+                
+                count++;
+                countElement.textContent = count;
+                bulkSelections[qty] = count;
+                updateSummary();
+            });
+        });
+        
+        // Soumission du formulaire
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Vérifier si le panier contient des articles
+            if (totalQuantityElement.textContent === '0') {
+                alert('Veuillez sélectionner au moins un lot de parfums.');
+                return;
+            }
+            
+            // Collecter les informations du client
+            const parfumType = document.getElementById('parfum-type').value;
+            const clientName = document.getElementById('client-name').value;
+            const clientPhone = document.getElementById('client-phone').value;
+            const clientEmail = document.getElementById('client-email').value;
+            
+            // Numéro de téléphone pour l'envoi du SMS
+            const vendorPhone = '0644762721';
+            
+            // Préparer le récapitulatif de la commande
+            let orderSummary = `COMMANDE DE PARFUMS - ${parfumType}\n\n`;
+            orderSummary += `Client: ${clientName}\n`;
+            orderSummary += `Téléphone: ${clientPhone}\n`;
+            orderSummary += `Email: ${clientEmail}\n\n`;
+            orderSummary += `DÉTAIL DE LA COMMANDE:\n`;
+            
+            // Ajouter les lots sélectionnés au récapitulatif
+            for (const qty in bulkSelections) {
+                if (bulkSelections[qty] > 0) {
+                    const price = parseFloat(document.querySelector(`[data-qty="${qty}"]`).dataset.price);
+                    const count = bulkSelections[qty];
+                    const totalQty = parseInt(qty) * count;
+                    const subTotal = totalQty * price;
+                    
+                    orderSummary += `${count} × Lot(s) de ${qty} pièces à ${price.toFixed(2)}€/unité = ${subTotal.toFixed(2)}€\n`;
+                }
+            }
+            
+            orderSummary += `\nQuantité totale: ${totalQuantityElement.textContent} pièces`;
+            orderSummary += `\nMontant total: ${totalAmountElement.textContent}`;
+            
+            // Détection de l'appareil
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Envoi de SMS sur mobile au numéro du vendeur
+                window.location.href = `sms:${vendorPhone}?body=${encodeURIComponent(orderSummary)}`;
+            } else {
+                // Envoi d'email via Gmail
+                const subject = encodeURIComponent(`Commande de parfums ${parfumType} - ${clientName}`);
+                const body = encodeURIComponent(orderSummary + "\n\nPour toute question, contactez-nous au " + vendorPhone);
+                
+                // Ouvrir Gmail dans une nouvelle fenêtre avec les données préremplies
+                window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${clientEmail}&su=${subject}&body=${body}`, '_blank');
+            }
+            
+            // Afficher un message de confirmation
+            const successMsg = document.createElement('div');
+            successMsg.className = 'order-success';
+            successMsg.textContent = 'Votre commande a été envoyée avec succès!';
+            orderForm.appendChild(successMsg);
+            successMsg.style.display = 'block';
+            
+            // Réinitialiser le formulaire et les sélections
+            setTimeout(() => {
+                // Réinitialiser les compteurs
+                document.querySelectorAll('.bulk-count').forEach(element => {
+                    element.textContent = '0';
+                });
+                
+                // Réinitialiser l'objet de sélections
+                for (const qty in bulkSelections) {
+                    bulkSelections[qty] = 0;
+                }
+                
+                // Mettre à jour le récapitulatif
+                updateSummary();
+                
+                // Réinitialiser le formulaire
+                orderForm.reset();
+                
+                // Masquer le message de succès
+                successMsg.style.display = 'none';
+            }, 3000);
+        });
+    });
+    </script>
+</body>
+</html>

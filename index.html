@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vente de parfums de luxe en gros à prix avantageux. Livraison en France et en Europe, remise en main propre sur Paris.">
+    <meta name="keywords" content="parfums en gros, vente parfum, parfum de luxe, parfum pas cher, parfum bois, parfum bakara, sauvage parfum">
+    <meta name="author" content="Parfums Premium">
+    <meta property="og:title" content="Parfums Premium - Vente en gros de parfums de luxe">
+    <meta property="og:description" content="Large gamme de parfums de luxe en gros à prix avantageux. Livraison en France et en Europe.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://parfumspremium.com">
+    <title>Parfums Premium - Vente en gros de parfums de luxe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        :root {
+            --primary-color: #212121;
+            --secondary-color: #bf9b30;
+            --accent-color: #f8f3e3;
+            --text-color: #333333;
+            --light-color: #ffffff;
+            --gray-color: #f5f5f5;
+            --dark-gray: #777;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-200px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(200px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-left {
+            animation: slideInLeft 1.5s ease-out forwards;
+        }
+
+        .animate-right {
+            animation: slideInRight 1.5s ease-out forwards;
+        }
+
+        .animate-up {
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-color);
+            background: transparent;
+            border: none;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fond.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light-color);
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--light-color);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .about {
+            padding: 100px 0;
+            background-color: var(--gray-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .products {
+            padding: 100px 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            perspective: 1000px;
+            height: 320px;
+        }
+
+        .product-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: var(--shadow);
+            border-radius: 10px;
+        }
+
+        .product-card.flipped .product-inner {
+            transform: rotateY(180deg);
+        }
+
+        .product-front, .product-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--light-color);
+        }
+
+        .product-back {
+            transform: rotateY(180deg);
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-back h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .product-back p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .product-img {
+            height: 200px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img img {
+            max-width: 70%;
+            max-height: 85%;
+            transition: var(--transition);
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .add-btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--light-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .add-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .cart {
+            padding: 100px 0;
+            background: var(--gray-color);
+        }
+
+        .cart-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .product-selection, .cart-summary {
+            flex: 1;
+            background: var(--light-color);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .back-arrow {
+            display: inline-block;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .back-arrow:hover {
+            color: var(--primary-color);
+        }
+
+        .product-selection h3, .cart-summary h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .pricing-options {
+            margin-top: 20px;
+        }
+
+        .price-tier {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .price-tier:hover {
+            background: var(--accent-color);
+        }
+
+        .tier-quantity {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .tier-price {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .cart-items {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item span {
+            font-size: 0.9rem;
+        }
+
+        .cart-total {
+            margin: 20px 0;
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--secondary-color);
+            color: var(--light-color);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .order-success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--light-color);
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+
+        .footer-text {
+            margin-bottom: 30px;
+            color: #ccc;
+            font-size: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 0 20px;
+        }
+
+        .footer-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-social {
+            margin-bottom: 30px;
+        }
+
+        .footer-social a {
+            color: var(--light-color);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .cart-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                display: none;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .product-img {
+                height: 180px;
+            }
+
+            .product-info h3 {
+                font-size: 1.2rem;
+            }
+
+            .footer-logo {
+                font-size: 1.8rem;
+            }
+
+            .footer-links li {
+                margin: 0 10px;
+            }
+
+            .footer-social a {
+                font-size: 1.2rem;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#hero" class="logo">Parfums <span>Premium</span></a>
+                <button class="menu-toggle">☰</button>
+                <ul class="nav-links">
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#products">Parfums</a></li>
+                    <li><a href="#cart">Commander</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-left">Parfums de luxe en gros à prix imbattables</h1>
+                <p class="animate-right">Découvrez notre collection de parfums inspirés des plus grandes marques à des prix avantageux pour les professionnels et revendeurs.</p>
+                <a href="#products" class="btn animate-left">Découvrir nos parfums</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="animate-left">À propos de nous</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="animate-right">Une expérience olfactive exceptionnelle</h3>
+                    <p class="animate-left">Parfums Premium est spécialisé dans la vente en gros de parfums de haute qualité inspirés des plus grandes marques. Nos produits sont fabriqués avec des ingrédients soigneusement sélectionnés pour offrir une expérience olfactive exceptionnelle.</p>
+                    <p class="animate-right">Nous proposons une large gamme de parfums pour hommes et femmes à des prix très compétitifs, parfaits pour les professionnels, revendeurs et détaillants souhaitant maximiser leurs marges.</p>
+                    <p class="animate-left">Notre objectif est de rendre le luxe accessible à tous en offrant des parfums d'excellente qualité à des prix abordables. Nous livrons dans toute la France et en Europe, et proposons également une remise en main propre sur Paris.</p>
+                </div>
+                <div class="about-image animate-right">
+                    <img src="https://images.unsplash.com/photo-1596742578443-7682ef7b7057?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Collection de parfums">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="animate-left">Nos Parfums</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-name="Bois" data-img="/bois.png">
+                    <div class="product-inner">
+                        <div class="product-front">
+                            <div class="product-img">
+                                <img src="/bois.png" alt="Parfum Bois">
+                            </div>
+                            <div class="product-info">
+                                <h3>Bois</h3>
+                                <a href="#cart" class="add-btn">Ajouter</a>
+                            </div>
+                        </div>
+                        <div class="product-back">
+                            <h3>Bois</h3>
+                            <p>Un parfum boisé et élégant avec des notes de santal et de cèdre.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-name="Bakara" data-img="/bakara.png">
+                    <div class="product-inner">
+                        <div class="product-front">
+                            <div class="product-img">
+                                <img src="/bakara.png" alt="Parfum Bakara">
+                            </div>
+                            <div class="product-info">
+                                <h3>Bakara</h3>
+                                <a href="#cart" class="add-btn">Ajouter</a>
+                            </div>
+                        </div>
+                        <div class="product-back">
+                            <h3>Bakara</h3>
+                            <p>Un mélange riche de safran et d'ambre pour une touche luxueuse.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-name="Aisha" data-img="/aicha.png">
+                    <div class="product-inner">
+                        <div class="product-front">
+                            <div class="product-img">
+                                <img src="/aicha.png" alt="Parfum Aisha">
+                            </div>
+                            <div class="product-info">
+                                <h3>Aisha</h3>
+                                <a href="#cart" class="add-btn">Ajouter</a>
+                            </div>
+                        </div>
+                        <div class="product-back">
+                            <h3>Aisha</h3>
+                            <p>Un parfum floral délicat avec des notes de jasmin et de rose.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-name="Mula" data-img="/mula.png">
+                    <div class="product-inner">
+                        <div class="product-front">
+                            <div class="product-img">
+                                <img src="/mula.png" alt="Parfum Mula">
+                            </div>
+                            <div class="product-info">
+                                <h3>Mula</h3>
+                                <a href="#cart" class="add-btn">Ajouter</a>
+                            </div>
+                        </div>
+                        <div class="product-back">
+                            <h3>Mula</h3>
+                            <p>Un parfum audacieux avec des notes de cuir et d'épices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-name="Sauvage" data-img="/savage.png">
+                    <div class="product-inner">
+                        <div class="product-front">
+                            <div class="product-img">
+                                <img src="/savage.png" alt="Parfum Sauvage">
+                            </div>
+                            <div class="product-info">
+                                <h3>Sauvage</h3>
+                                <a href="#cart" class="add-btn">Ajouter</a>
+                            </div>
+                        </div>
+                        <div class="product-back">
+                            <h3>Sauvage</h3>
+                            <p>Un parfum frais et vibrant avec des notes de bergamote et de poivre.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-name="Kirke" data-img="/kirke.png">
+                    <div class="product-inner">
+                        <div class="product-front">
+                            <div class="product-img">
+                                <img src="/kirke.png" alt="Parfum Kirke">
+                            </div>
+                            <div class="product-info">
+                                <h3>Kirke</h3>
+                                <a href="#cart" class="add-btn">Ajouter</a>
+                            </div>
+                        </div>
+                        <div class="product-back">
+                            <h3>Kirke</h3>
+                            <p>Un parfum fruité et gourmand avec des notes de pêche et de vanille.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-name="Sucre Rose" data-img="/rose.png">
+                    <div class="product-inner">
+                        <div class="product-front">
+                            <div class="product-img">
+                                <img src="/rose.png" alt="Parfum Sucre Rose">
+                            </div>
+                            <div class="product-info">
+                                <h3>Sucre Rose</h3>
+                                <a href="#cart" class="add-btn">Ajouter</a>
+                            </div>
+                        </div>
+                        <div class="product-back">
+                            <h3>Sucre Rose</h3>
+                            <p>Un parfum doux et sucré avec des notes de rose et de caramel.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-name="Sucre Noir" data-img="/noir.png">
+                    <div class="product-inner">
+                        <div class="product-front">
+                            <div class="product-img">
+                                <img src="/noir.png" alt="Parfum Sucre Noir">
+                            </div>
+                            <div class="product-info">
+                                <h3>Sucre Noir</h3>
+                                <a href="#cart" class="add-btn">Ajouter</a>
+                            </div>
+                        </div>
+                        <div class="product-back">
+                            <h3>Sucre Noir</h3>
+                            <p>Un parfum intense avec des notes de chocolat noir et de patchouli.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cart" class="cart">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="animate-left">Votre Panier</h2>
+            </div>
+            <div class="cart-container">
+                <div class="product-selection">
+                    <a href="#products" class="back-arrow animate-left" id="back-to-products">← Retour aux produits</a>
+                    <h3 class="animate-right">Sélectionner les Quantités</h3>
+                    <div class="pricing-options animate-left" id="pricing-options">
+                    </div>
+                </div>
+                <div class="cart-summary">
+                    <h3 class="animate-left">Récapitulatif</h3>
+                    <div class="cart-items animate-right" id="cart-items">
+                    </div>
+                    <div class="cart-total animate-left" id="cart-total">Total: 0.00€</div>
+                    <button class="checkout-btn animate-right" id="checkout-btn">Payer avec Stripe</button>
+                    <div class="order-success animate-right" id="order-success">
+                        Votre paiement a été effectué avec succès !
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo animate-left">Parfums <span>Premium</span></div>
+                <p class="footer-text animate-right">Vente de parfums de luxe en gros à prix avantageux pour les professionnels et revendeurs. Livraison rapide en France et en Europe, remise en main propre à Paris.</p>
+                <ul class="footer-links animate-left">
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#products">Parfums</a></li>
+                    <li><a href="#cart">Commander</a></li>
+                </ul>
+                <div class="footer-social animate-right">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <p class="copyright animate-left">© 2025 Parfums Premium. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function revealAnimations() {
+                const elements = document.querySelectorAll('.animate-left, .animate-right, .animate-up');
+                elements.forEach(el => {
+                    const position = el.getBoundingClientRect();
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        el.style.visibility = 'visible';
+                    }
+                });
+            }
+            
+            revealAnimations();
+            window.addEventListener('scroll', revealAnimations);
+
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                const inner = card.querySelector('.product-inner');
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('add-btn')) {
+                        card.classList.toggle('flipped');
+                    }
+                });
+            });
+
+            const pricingTiers = [
+                { quantity: 20, price: 6.50 },
+                { quantity: 50, price: 6.00 },
+                { quantity: 100, price: 5.50 },
+                { quantity: 500, price: 4.80 },
+                { quantity: 1000, price: 4.50 },
+                { quantity: 2000, price: 4.30 },
+                { quantity: 3000, price: 4.20 },
+                { quantity: 5000, price: 4.00 }
+            ];
+
+            let cart = [];
+            const pricingOptions = document.getElementById('pricing-options');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const orderSuccess = document.getElementById('order-success');
+            const backToProducts = document.getElementById('back-to-products');
+
+            backToProducts.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = "#products";
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: document.querySelector('#products').offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            });
+
+            function updateCart() {
+                cartItems.innerHTML = '';
+                let total = 0;
+                cart.forEach(item => {
+                    const itemTotal = item.quantity * item.price;
+                    total += itemTotal;
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item animate-up';
+                    cartItem.innerHTML = `
+                        <span>${item.name} (${item.quantity} pièces à ${item.price.toFixed(2)}€)</span>
+                        <span>${itemTotal.toFixed(2)}€</span>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                cartTotal.textContent = `Total: ${total.toFixed(2)}€`;
+            }
+
+            document.querySelectorAll('.add-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const card = btn.closest('.product-card');
+                    const name = card.dataset.name;
+                    const img = card.dataset.img;
+                    
+                    pricingOptions.innerHTML = '';
+                    
+                    const productTitle = document.createElement('h4');
+                    productTitle.className = 'animate-left';
+                    productTitle.textContent = name;
+                    pricingOptions.appendChild(productTitle);
+                    
+                    const productImg = document.createElement('img');
+                    productImg.src = img;
+                    productImg.alt = name;
+                    productImg.style.maxWidth = '50px';
+                    productImg.style.margin = '10px 0';
+                    productImg.className = 'animate-right';
+                    pricingOptions.appendChild(productImg);
+                    
+                    pricingTiers.forEach((tier, index) => {
+                        setTimeout(() => {
+                            const tierDiv = document.createElement('div');
+                            tierDiv.className = 'price-tier animate-up';
+                            tierDiv.innerHTML = `
+                                <span class="tier-quantity">${tier.quantity} pièces</span>
+                                <span class="tier-price">${tier.price.toFixed(2)}€/unité</span>
+                            `;
+                            tierDiv.addEventListener('click', () => {
+                                cart.push({ name, quantity: tier.quantity, price: tier.price });
+                                updateCart();
+                                const newItem = cartItems.lastElementChild;
+                                if(newItem) {
+                                    newItem.style.background = 'rgba(191, 155, 48, 0.2)';
+                                    setTimeout(() => {
+                                        newItem.style.background = 'transparent';
+                                    }, 1000);
+                                }
+                            });
+                            pricingOptions.appendChild(tierDiv);
+                        }, index * 100);
+                    });
+                    
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: document.querySelector('#cart').offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                });
+            });
+
+            const stripe = Stripe('pk_test_51RGy61PQqougnU1C7Oa4hV8I7sI2g0iUsynJuh6R0EtkV7tT9tR1S4WPoa2UJo3y3w1HNWnO2v2pRNwJTxLcvI5f00q3D5uWn6');
+
+            checkoutBtn.addEventListener('click', async () => {
+                if (cart.length === 0) {
+                    alert('Veuillez ajouter des produits au panier.');
+                    return;
+                }
+
+                try {
+                    const lineItems = cart.map(item => ({
+                        price_data: {
+                            currency: 'eur',
+                            product_data: {
+                                name: item.name,
+                            },
+                            unit_amount: Math.round(item.price * 100),
+                        },
+                        quantity: item.quantity,
+                    }));
+
+                    const response = await fetch('/api/create-checkout', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            line_items: lineItems,
+                            success_url: window.location.origin + '/success.html',
+                            cancel_url: window.location.origin + '/',
+                        }),
+                    });
+
+                    const session = await response.json();
+
+                    if (session.error) {
+                        throw new Error(session.error);
+                    }
+
+                    const { error } = await stripe.redirectToCheckout({
+                        sessionId: session.id,
+                    });
+
+                    if (error) {
+                        console.error('Stripe Checkout error:', error);
+                        alert('Une erreur s\'est produite lors du paiement.');
+                    }
+                } catch (error) {
+                    console.error('Checkout error:', error);
+                    alert('Une erreur s\'est produite lors du paiement: ' + error.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
