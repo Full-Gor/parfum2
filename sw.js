@@ -11,9 +11,8 @@ const urlsToCache = [
   '/savage.png',
   '/kirke.png',
   '/rose.png',
-  '/noir.png',
-  '/icon-192.png',
-  '/icon-512.png'
+  '/noir.png'
+ 
 ];
 
 // Installation du Service Worker
