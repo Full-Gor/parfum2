@@ -1021,22 +1021,19 @@
                 });
             });
 
-            const stripe = Stripe('pk_test_51RGy61PQqougnU1C7Oa4hV8I7sI2g0iUsynJuh6R0EtkV7tT9tR1S4WPoa2UJo3y3w1HNWnO2v2pRNwJTxLcvI5f00q3D5uWn6');
+           // Assurez-vous d'utiliser EXACTEMENT votre clé publique Stripe
+const stripe = Stripe('pk_test_51RGy61PQqougnU1CNivMCAiwJVnpZPPAafCKLVWiJZbD5rkqn5pFgJHXQMKSQRSSeqBzF2ZOaRvJeIipiwbisbzn00eqoHROHX');
 
-            checkoutBtn.addEventListener('click', async () => {
-    if (cart.length === 0) {
-        alert('Veuillez ajouter des produits au panier.');
-        return;
-    }
-
+checkoutBtn.addEventListener('click', async () => {
     try {
+        // Format précis des line_items
         const lineItems = cart.map(item => ({
             price_data: {
                 currency: 'eur',
                 product_data: {
                     name: item.name,
                 },
-                unit_amount: Math.round(item.price * 100),
+                unit_amount: Math.round(item.price * 100), // En centimes
             },
             quantity: item.quantity,
         }));
@@ -1055,17 +1052,17 @@
             throw new Error(session.error);
         }
 
-        const { error } = await stripe.redirectToCheckout({
+        const result = await stripe.redirectToCheckout({
             sessionId: session.id,
         });
 
-        if (error) {
-            console.error('Stripe Checkout error:', error);
+        if (result.error) {
+            console.error('Stripe Checkout error:', result.error);
             alert('Une erreur s\'est produite lors du paiement.');
         }
     } catch (error) {
-        console.error('Checkout error:', error);
-        alert('Une erreure s\'est produite lors du paiement: ' + error.message);
+        console.error('Detailed Checkout error:', error);
+        alert('Une erreur s\'est produite lors du paiement: ' + error.message);
     }
 });
         });
