@@ -1,90 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paiement Réussi - Parfums Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #212121;
-            --secondary-color: #bf9b30;
-            --light-color: #ffffff;
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 50px; 
         }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 100px auto;
-            padding: 40px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        
-        .success-icon {
-            font-size: 5rem;
-            color: #4CAF50;
-            margin-bottom: 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: var(--light-color);
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px);
+        .success-message {
+            color: green;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="success-icon">✓</div>
-        <h1>Paiement Réussi !</h1>
-        <p>Merci pour votre commande. Votre paiement a été traité avec succès.</p>
-        <p>Vous recevrez un email de confirmation avec les détails de votre commande.</p>
-        <a href="/" class="btn">Retour à l'accueil</a>
+    <div class="success-message">
+        <h1>Merci pour votre commande !</h1>
+        <p>Votre paiement a été effectué avec succès.</p>
     </div>
-    
     <script>
-        // Récupérer l'ID de session depuis l'URL si nécessaire
+        // Vous pouvez ajouter du code pour récupérer l'ID de session si nécessaire
         const urlParams = new URLSearchParams(window.location.search);
         const sessionId = urlParams.get('session_id');
-        
-        // Vous pourriez utiliser cet ID pour vérifier le statut de la commande si nécessaire
-        console.log("Session ID:", sessionId);
+        console.log('Session ID:', sessionId);
     </script>
 </body>
 </html>
